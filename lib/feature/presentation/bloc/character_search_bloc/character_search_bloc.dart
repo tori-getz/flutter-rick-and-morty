@@ -3,7 +3,9 @@ import 'package:flutter_rick_and_morty/core/error/failure.dart';
 import 'package:flutter_rick_and_morty/feature/domain/usecases/search_character.dart';
 import 'package:flutter_rick_and_morty/feature/presentation/bloc/character_search_bloc/character_search_event.dart';
 import 'package:flutter_rick_and_morty/feature/presentation/bloc/character_search_bloc/character_search_state.dart';
+import 'package:injectable/injectable.dart';
 
+@injectable
 class CharacterSearchBloc
     extends Bloc<CharacterSearchEvent, CharacterSearchState> {
   final SearchCharacter searchCharacter;

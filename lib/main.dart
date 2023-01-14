@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:flutter_rick_and_morty/di.dart' as di;
 import 'package:flutter_rick_and_morty/feature/presentation/bloc/character_list_cubit/character_list_cubit.dart';
 import 'package:flutter_rick_and_morty/feature/presentation/bloc/character_search_bloc/character_search_bloc.dart';
 import 'package:flutter_rick_and_morty/feature/presentation/route_manager.dart';
+import 'package:flutter_rick_and_morty/core/di/di_configure.dart' as di;
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   await dotenv.load(fileName: '.env');
-  await di.init();
+  await di.configureDependencies();
 
   runApp(const App());
 }
@@ -23,9 +23,9 @@ class App extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider<CharacterListCubit>(
-            create: (_) => di.sl<CharacterListCubit>()..loadCharacter()),
+            create: (_) => di.getIt<CharacterListCubit>()..loadCharacter()),
         BlocProvider<CharacterSearchBloc>(
-            create: (_) => di.sl<CharacterSearchBloc>()),
+            create: (_) => di.getIt<CharacterSearchBloc>()),
       ],
       child: MaterialApp(
         title: 'Rick and Morty',

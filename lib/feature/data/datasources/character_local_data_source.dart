@@ -4,6 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter_rick_and_morty/core/constants.dart';
 import 'package:flutter_rick_and_morty/core/error/exception.dart';
 import 'package:flutter_rick_and_morty/feature/data/models/character_model.dart';
+import 'package:injectable/injectable.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 abstract class CharacterLocalDataSource {
@@ -11,6 +12,7 @@ abstract class CharacterLocalDataSource {
   Future<void> setCharacters(List<CharacterModel> characters);
 }
 
+@Injectable(as: CharacterLocalDataSource)
 class CharacterLocalDataSourceImpl implements CharacterLocalDataSource {
   final SharedPreferences sharedPreferences;
 

@@ -2,7 +2,9 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter_rick_and_morty/core/usecase/usecase.dart';
 import 'package:flutter_rick_and_morty/feature/domain/entities/character_entity.dart';
 import 'package:flutter_rick_and_morty/feature/domain/repositories/character_repository.dart';
+import 'package:injectable/injectable.dart';
 
+@lazySingleton
 class GetAllCharacters
     extends AbstractUseCase<List<CharacterEntity>, GetAllCharactersParams> {
   final CharacterRepository characterRepository;

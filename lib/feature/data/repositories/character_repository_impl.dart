@@ -1,12 +1,14 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter_rick_and_morty/core/error/exception.dart';
 import 'package:flutter_rick_and_morty/core/error/failure.dart';
-import 'package:flutter_rick_and_morty/core/platform/network_info.dart';
+import 'package:flutter_rick_and_morty/core/networking/network_info.dart';
 import 'package:flutter_rick_and_morty/feature/data/datasources/character_local_data_source.dart';
 import 'package:flutter_rick_and_morty/feature/data/datasources/character_remote_data_source.dart';
 import 'package:flutter_rick_and_morty/feature/data/models/character_model.dart';
 import 'package:flutter_rick_and_morty/feature/domain/repositories/character_repository.dart';
+import 'package:injectable/injectable.dart';
 
+@LazySingleton(as: CharacterRepository)
 class CharacterRepositoryImpl implements CharacterRepository {
   final CharacterRemoteDataSource remoteDataSource;
   final CharacterLocalDataSource localDataSource;

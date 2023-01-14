@@ -3,7 +3,9 @@ import 'package:flutter_rick_and_morty/core/error/failure.dart';
 import 'package:flutter_rick_and_morty/feature/domain/entities/character_entity.dart';
 import 'package:flutter_rick_and_morty/feature/domain/usecases/get_all_characters.dart';
 import 'package:flutter_rick_and_morty/feature/presentation/bloc/character_list_cubit/character_list_state.dart';
+import 'package:injectable/injectable.dart';
 
+@injectable
 class CharacterListCubit extends Cubit<CharacterState> {
   final GetAllCharacters getAllCharacters;
 

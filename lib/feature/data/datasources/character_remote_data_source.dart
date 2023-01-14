@@ -1,12 +1,14 @@
 import 'package:flutter_rick_and_morty/core/error/exception.dart';
-import 'package:flutter_rick_and_morty/core/http_client.dart';
+import 'package:flutter_rick_and_morty/core/networking/http_client.dart';
 import 'package:flutter_rick_and_morty/feature/data/models/character_model.dart';
+import 'package:injectable/injectable.dart';
 
 abstract class CharacterRemoteDataSource {
   Future<List<CharacterModel>> getAllCharacters(int page);
   Future<List<CharacterModel>> searchCharacter(String name);
 }
 
+@Injectable(as: CharacterRemoteDataSource)
 class CharacterRemoteDataSourceImpl implements CharacterRemoteDataSource {
   final HttpClient client;
 
