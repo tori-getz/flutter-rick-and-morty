@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rick_and_morty/feature/domain/entities/character_entity.dart';
+import 'package:flutter_rick_and_morty/feature/presentation/pages/character_details_page.dart';
 import 'package:flutter_rick_and_morty/feature/presentation/widgets/cached_image.dart';
 
 class CharacterCard extends StatelessWidget {
@@ -11,7 +12,8 @@ class CharacterCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        print(character.name);
+        Navigator.pushNamed(context, CharacterDetailPage.route,
+            arguments: character);
       },
       child: Card(
         margin: const EdgeInsets.all(8),
