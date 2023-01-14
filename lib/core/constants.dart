@@ -4,4 +4,6 @@ class Constants {
   Constants._();
 
   static String baseUrl = dotenv.env['API_URL']!;
+
+  static const String charactersCacheKey = '@rickandmorty/characters';
 }
