@@ -36,7 +36,12 @@ class CharactersPage extends StatelessWidget {
           )
         ],
       ),
-      body: CharactersList(),
+      body: RefreshIndicator(
+        onRefresh: () async {
+          print('hello');
+        },
+        child: CharactersList(),
+      ),
     );
   }
 }

@@ -39,6 +39,24 @@ class CharacterListCubit extends Cubit<CharacterState> {
     );
   }
 
+  void refresh() async {
+    if (state is CharacterLoading) return;
+
+    emit(const CharacterLoading([], isFirstFetch: true));
+
+    final failureOrCharacters =
+        await getAllCharacters(const GetAllCharactersParams(page: 1));
+
+    failureOrCharacters.fold(
+      (failure) {
+        emit(CharacterError(_getFailureMessage(failure)));
+      },
+      (nextCharacters) {
+        emit(CharacterLoaded(nextCharacters));
+      },
+    );
+  }
+
   String _getFailureMessage(Failure failure) {
     if (failure is ServerFailure) {
       return 'Server Failure';

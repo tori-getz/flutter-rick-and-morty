@@ -109,6 +109,8 @@ class CharacterSearchDelegate extends SearchDelegate {
         return GestureDetector(
           onTap: () {
             query = suggestion.name;
+            BlocProvider.of<CharacterSearchBloc>(context, listen: false)
+                .add(SearchCharacters(query));
           },
           child: Card(
             margin: const EdgeInsets.all(5),

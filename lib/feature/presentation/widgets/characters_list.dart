@@ -42,20 +42,25 @@ class CharactersList extends StatelessWidget {
           characters = state.characters;
         }
 
-        return ListView.builder(
-          controller: controller,
-          itemCount: characters.length + (isLoading ? 1 : 0),
-          itemBuilder: (context, index) {
-            if (index == characters.length) {
-              Timer(const Duration(microseconds: 30), () {
-                controller.jumpTo(controller.position.maxScrollExtent);
-              });
-              return _loadingIndicator();
-            }
-
-            CharacterEntity character = characters[index];
-            return CharacterCard(character: character);
+        return RefreshIndicator(
+          onRefresh: () async {
+            context.read<CharacterListCubit>().refresh();
           },
+          child: ListView.builder(
+            controller: controller,
+            itemCount: characters.length + (isLoading ? 1 : 0),
+            itemBuilder: (context, index) {
+              if (index == characters.length) {
+                Timer(const Duration(microseconds: 30), () {
+                  controller.jumpTo(controller.position.maxScrollExtent);
+                });
+                return _loadingIndicator();
+              }
+
+              CharacterEntity character = characters[index];
+              return CharacterCard(character: character);
+            },
+          ),
         );
       },
     );
