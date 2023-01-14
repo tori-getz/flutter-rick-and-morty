@@ -21,7 +21,7 @@ class CharacterLocalDataSourceImpl implements CharacterLocalDataSource {
     final jsonCharacters =
         sharedPreferences.getStringList(Constants.charactersCacheKey);
 
-    if (jsonCharacters.isEmpty) throw CacheException();
+    if (jsonCharacters!.isEmpty) throw CacheException();
 
     return Future.value(jsonCharacters
         .map(((character) => CharacterModel.fromJson(jsonDecode(character))))
