@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_rick_and_morty/feature/presentation/bloc/character_list_cubit/character_list_cubit.dart';
+import 'package:flutter_rick_and_morty/feature/presentation/bloc/character_list_cubit/character_list_state.dart';
+import 'package:flutter_rick_and_morty/feature/presentation/widgets/character_search_delegate.dart';
 import 'package:flutter_rick_and_morty/feature/presentation/widgets/characters_list.dart';
 
 class CharactersPage extends StatelessWidget {
@@ -12,10 +16,24 @@ class CharactersPage extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Characters'),
         actions: [
-          IconButton(
-            icon: const Icon(Icons.search),
-            onPressed: () {},
-          ),
+          BlocBuilder<CharacterListCubit, CharacterState>(
+            builder: (context, state) {
+              if (state is CharacterLoaded) {
+                return IconButton(
+                  icon: const Icon(Icons.search),
+                  onPressed: () {
+                    showSearch(
+                      context: context,
+                      delegate: CharacterSearchDelegate(
+                          suggestions: state.characters),
+                    );
+                  },
+                );
+              }
+
+              return const SizedBox.shrink();
+            },
+          )
         ],
       ),
       body: CharactersList(),

@@ -9,6 +9,6 @@ class HttpClient extends DioForNative {
       ..connectTimeout = 15000
       ..receiveTimeout = 15000;
 
-    interceptors.add(dioLoggerInterceptor);
+    // interceptors.add(dioLoggerInterceptor);
   }
 }

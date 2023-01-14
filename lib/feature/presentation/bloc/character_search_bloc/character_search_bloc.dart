@@ -10,8 +10,6 @@ class CharacterSearchBloc
   CharacterSearchBloc({required this.searchCharacter})
       : super(CharacterEmpty()) {
     on<SearchCharacters>((event, emit) async {
-      emit(CharacterSearchLoading());
-
       final failureOrCharacters = await searchCharacter(
           SearchCharacterParams(name: event.characterName));
 
