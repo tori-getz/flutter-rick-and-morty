@@ -5,7 +5,7 @@ import 'package:flutter_rick_and_morty/feature/domain/repositories/character_rep
 
 class GetAllCharacters
     extends AbstractUseCase<List<CharacterEntity>, GetAllCharactersParams> {
-  final AbstractCharacterRepository characterRepository;
+  final CharacterRepository characterRepository;
 
   GetAllCharacters({required this.characterRepository});
 

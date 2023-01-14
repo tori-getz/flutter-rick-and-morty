@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:flutter_rick_and_morty/di.dart' as di;
 
 Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
   await DotEnv().load(fileName: '.env');
+  await di.init();
+
   runApp(const MyApp());
 }
 

@@ -5,7 +5,7 @@ import 'package:flutter_rick_and_morty/feature/domain/repositories/character_rep
 
 class SearchCharacter
     extends AbstractUseCase<List<CharacterEntity>, SearchCharacterParams> {
-  final AbstractCharacterRepository characterRepository;
+  final CharacterRepository characterRepository;
 
   SearchCharacter({required this.characterRepository});
 
